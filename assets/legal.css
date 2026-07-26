@@ -1,0 +1,530 @@
+/* ============================================================================
+   SunSof Games — hoja de estilos ÚNICA para el hub y todos los documentos
+   legales. Antes vivía triplicada en línea dentro de index/privacy/terms; un
+   cambio de marca obligaba a editar tres archivos y mantenerlos sincronizados
+   a mano. Ahora hay un solo dueño del look, y cada juego solo aporta su color
+   de acento vía la variable --accent que el generador escribe inline en <body>.
+   ========================================================================== */
+
+:root {
+  --bg-0: #030305;
+  --bg-1: #0a0a14;
+  --panel: rgba(255, 255, 255, 0.03);
+  --panel-strong: linear-gradient(135deg, rgba(16, 16, 24, 0.78), rgba(24, 24, 36, 0.6));
+  --panel-border: rgba(255, 255, 255, 0.08);
+  --neon-cyan: #00f2fe;
+  --neon-violet: #7a5cff;
+  --neon-gold: #ffd700;
+  --text-main: #e8e8f0;
+  --text-dim: #9a9ab0;
+  --text-faint: #64647a;
+
+  /* Color de acento del documento. Cada juego lo sobreescribe; los documentos
+     del estudio se quedan con el cian de marca. */
+  --accent: var(--neon-cyan);
+  --accent-soft: rgba(0, 242, 254, 0.18);
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: "Rajdhani", "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background: radial-gradient(ellipse at top, var(--bg-1) 0%, var(--bg-0) 65%);
+  color: var(--text-main);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Glow ambiental, puramente decorativo. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(600px 400px at 15% -5%, rgba(122, 92, 255, 0.14), transparent 60%),
+    radial-gradient(600px 400px at 90% 10%, var(--accent-soft), transparent 60%);
+}
+
+h1, h2, h3 {
+  font-family: "Orbitron", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  font-weight: 700;
+  margin: 0;
+}
+
+.wrap {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 0 1.25rem 4rem;
+}
+
+/* ---------- Hero ---------- */
+header.hero {
+  padding: 3.5rem 0 2rem;
+  text-align: center;
+}
+
+.brand-mark {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 1.1rem;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Orbitron", "Helvetica Neue", Arial, sans-serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #04141a;
+  background: linear-gradient(135deg, var(--accent), var(--neon-violet));
+  box-shadow: 0 0 0 1.5px var(--accent-soft), 0 0 28px rgba(0, 242, 254, 0.25);
+  overflow: hidden;
+}
+
+.brand-mark img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.eyebrow {
+  display: inline-block;
+  font-size: 0.72rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--accent);
+  text-shadow: 0 0 12px var(--accent-soft);
+  margin-bottom: 0.6rem;
+}
+
+h1 {
+  font-size: clamp(1.7rem, 5vw, 2.4rem);
+  letter-spacing: 1px;
+  margin: 0 0 0.5rem;
+  background: linear-gradient(135deg, #ffffff, var(--accent) 120%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.subtitle {
+  color: var(--text-dim);
+  font-size: 0.98rem;
+  margin: 0;
+  max-width: 560px;
+  margin-inline: auto;
+}
+
+.subtitle strong {
+  color: var(--text-main);
+  font-weight: 600;
+}
+
+/* Chip con el package name — le dice a un revisor de Play, de un vistazo,
+   exactamente a qué app aplica el documento. */
+.app-id {
+  display: inline-block;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.74rem;
+  letter-spacing: 0.5px;
+  color: var(--text-dim);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--panel-border);
+  padding: 3px 10px;
+  border-radius: 999px;
+  margin-top: 0.9rem;
+}
+
+/* ---------- Navegación entre documentos ---------- */
+nav.doc-switch {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 1.6rem 0 0;
+  flex-wrap: wrap;
+}
+
+nav.doc-switch a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-size: 0.82rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-weight: 600;
+  border: 1px solid var(--panel-border);
+  background: var(--panel);
+  color: var(--text-dim);
+  transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+nav.doc-switch a:hover { transform: translateY(-1px); }
+
+nav.doc-switch a.active {
+  color: #04141a;
+  background: linear-gradient(135deg, var(--accent), #63f6ff);
+  border-color: transparent;
+  box-shadow: 0 0 22px var(--accent-soft);
+}
+
+nav.doc-switch a.inactive { border-color: rgba(122, 92, 255, 0.3); }
+
+nav.doc-switch a.inactive:hover {
+  border-color: var(--neon-violet);
+  color: var(--text-main);
+  box-shadow: 0 0 18px rgba(122, 92, 255, 0.25);
+}
+
+/* ---------- Tarjeta de contenido ---------- */
+main.card {
+  margin-top: 2.5rem;
+  background: var(--panel-strong);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--accent-soft);
+  border-radius: 26px;
+  padding: clamp(1.5rem, 4vw, 3rem);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+}
+
+.updated-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.78rem;
+  letter-spacing: 1px;
+  color: var(--neon-gold);
+  background: rgba(255, 215, 0, 0.08);
+  border: 1px solid rgba(255, 215, 0, 0.25);
+  padding: 6px 14px;
+  border-radius: 999px;
+  margin-bottom: 2rem;
+}
+
+section {
+  margin-bottom: 2.1rem;
+  scroll-margin-top: 1.5rem;
+}
+
+section:last-of-type { margin-bottom: 0; }
+
+h2 {
+  font-size: 1.05rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 0.85rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid var(--accent-soft);
+}
+
+p { margin: 0 0 0.9rem; color: var(--text-main); }
+p:last-child { margin-bottom: 0; }
+
+ul { margin: 0 0 0.9rem; padding-left: 1.3rem; }
+ul:last-child { margin-bottom: 0; }
+
+li { margin-bottom: 0.45rem; color: var(--text-main); }
+li::marker { color: var(--neon-violet); }
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid var(--accent-soft);
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+a:hover { color: #ffffff; border-color: currentColor; }
+
+code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.88em;
+  color: var(--text-dim);
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 5px;
+  padding: 1px 5px;
+}
+
+.contact-chip {
+  display: inline-block;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.85em;
+  color: var(--text-main);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--panel-border);
+  padding: 1px 8px;
+  border-radius: 6px;
+  border-bottom: none;
+}
+
+.toc {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 8px;
+  margin: 0 0 2.4rem;
+  padding: 0;
+  list-style: none;
+}
+
+.toc li { margin: 0; }
+.toc li::marker { content: none; }
+
+.toc a {
+  display: block;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 12px;
+  padding: 9px 12px;
+  font-size: 0.82rem;
+  color: var(--text-dim);
+  transition: all 0.2s ease;
+}
+
+.toc a:hover {
+  color: var(--accent);
+  border-color: var(--accent-soft);
+  background: rgba(0, 242, 254, 0.05);
+}
+
+/* ---------- Hub: catálogo de juegos ---------- */
+.section-label {
+  font-size: 0.72rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--neon-violet);
+  text-align: center;
+  margin-bottom: 1.2rem;
+}
+
+.hub-section { margin-top: 3rem; }
+
+.game-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.game-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-radius: 16px;
+  padding: 0.9rem 1.2rem;
+  flex-wrap: wrap;
+}
+
+.game-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  box-shadow: 0 0 8px currentColor;
+  background: currentColor;
+}
+
+.game-meta { flex: 1 1 200px; min-width: 0; }
+
+.game-card h3 {
+  font-size: 0.95rem;
+  color: var(--text-main);
+  margin-bottom: 1px;
+}
+
+.game-card p {
+  margin: 0;
+  color: var(--text-dim);
+  font-size: 0.84rem;
+}
+
+.game-docs {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+}
+
+.game-docs a {
+  font-size: 0.68rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--text-dim);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--panel-border);
+  border-radius: 999px;
+  padding: 5px 12px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.game-docs a:hover {
+  color: var(--text-main);
+  border-color: var(--accent);
+}
+
+.game-soon {
+  flex-shrink: 0;
+  font-size: 0.62rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  border: 1px solid var(--panel-border);
+  padding: 3px 9px;
+  border-radius: 999px;
+}
+
+/* ---------- Hub: tarjetas de documentos del estudio ---------- */
+.legal-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+@media (max-width: 560px) {
+  .legal-grid { grid-template-columns: 1fr; }
+}
+
+.legal-card {
+  display: block;
+  background: var(--panel-strong);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--panel-border);
+  border-radius: 20px;
+  padding: 1.5rem;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.legal-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.4);
+}
+
+.legal-card .icon {
+  font-size: 1.4rem;
+  margin-bottom: 0.6rem;
+  display: block;
+}
+
+.legal-card h3 {
+  font-size: 1rem;
+  color: var(--text-main);
+  margin-bottom: 0.35rem;
+}
+
+.legal-card p {
+  margin: 0;
+  color: var(--text-dim);
+  font-size: 0.84rem;
+}
+
+.legal-card.privacy h3 { color: var(--neon-cyan); }
+.legal-card.terms h3 { color: var(--neon-violet); }
+
+/* ---------- Selector de idioma (hub) ---------- */
+.lang-switch {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  padding: 1.4rem 0 0;
+  flex-wrap: wrap;
+}
+
+.lang-switch button {
+  font-family: inherit;
+  font-size: 0.72rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--text-dim);
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  padding: 6px 13px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.lang-switch button:hover {
+  color: var(--text-main);
+  border-color: rgba(0, 242, 254, 0.3);
+}
+
+.lang-switch button.active {
+  color: #04141a;
+  background: linear-gradient(135deg, var(--neon-cyan), #63f6ff);
+  border-color: transparent;
+  box-shadow: 0 0 16px rgba(0, 242, 254, 0.35);
+}
+
+.lang-switch button.active::before { content: "✓ "; }
+
+/* ---------- Footer ---------- */
+footer.site-footer {
+  text-align: center;
+  margin-top: 3rem;
+  color: var(--text-faint);
+  font-size: 0.8rem;
+}
+
+footer.site-footer .brand {
+  color: var(--text-dim);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  margin-bottom: 0.6rem;
+}
+
+footer.site-footer a {
+  color: var(--text-dim);
+  border-bottom-color: rgba(255, 255, 255, 0.15);
+}
+
+footer.site-footer a:hover { color: var(--accent); }
+
+.generated-note {
+  margin-top: 0.8rem;
+  font-size: 0.7rem;
+  color: var(--text-faint);
+}
+
+/* ---------- Volver arriba ---------- */
+.back-to-top {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--panel-strong);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--accent-soft);
+  color: var(--accent);
+  text-decoration: none;
+  font-size: 1.1rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+@media (min-width: 700px) {
+  .back-to-top { display: none; }
+}
+
+@media (prefers-color-scheme: light) {
+  /* Deliberado: los documentos legales se quedan en la superficie oscura OLED
+     de la marca independientemente del tema del sistema, igual que la
+     identidad Glassmorphism dentro del juego. */
+}

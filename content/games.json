@@ -1,0 +1,102 @@
+{
+  "$comment": [
+    "FUENTE DE VERDAD del sitio legal de SunSof Games. Nada de HTML se edita a mano:",
+    "`node tools/build-legal.mjs` regenera el hub, los documentos del estudio y los de cada",
+    "juego a partir de este archivo + content/clauses.mjs.",
+    "",
+    "Para agregar el juego #4: copiá un bloque de `games`, ajustá slug/nombre/paquete/acento,",
+    "poné en `capabilities` SOLO lo que la app realmente hace (esto define qué declara la",
+    "política y debe coincidir con el Data Safety de Play Console), copiá el icono a",
+    "assets/icons/<slug>.png y corré el build. No hay más pasos."
+  ],
+
+  "studio": {
+    "name": "SunSof Games",
+    "legalName": "SunSof Games",
+    "contact": "support@sunsof.games",
+    "site": "https://sunsof.games",
+    "copyrightYear": 2026,
+    "jurisdiction": "Colombia"
+  },
+
+  "games": [
+    {
+      "slug": "blocky-sync-fit",
+      "name": "Blocky: Sync & Fit",
+      "package": "com.sunsofgames.blocky",
+      "accent": "#00f2fe",
+      "icon": "blocky-sync-fit.png",
+      "status": "live",
+      "effectiveDate": "2026-07-26",
+      "previousEffectiveDate": "2026-07-12",
+      "$comment": "Publicado en Play desde la v1.2.5. Los dos correos personales quedan como contacto adicional porque son los que ya se comunicaron en versiones anteriores del documento; el canal principal ahora es support@sunsof.games.",
+      "extraContacts": ["ccamargov20@gmail.com", "juanmauricioescobar@gmail.com"],
+      "capabilities": {
+        "ads": true,
+        "personalizedAds": false,
+        "iap": true,
+        "playGames": true,
+        "cloudSave": true,
+        "ugc": false,
+        "account": false
+      },
+      "tagline": {
+        "es": "Torres infinitas de precisión, un toque a la vez.",
+        "en": "Infinite precision towers, one tap at a time.",
+        "pt": "Torres infinitas de precisão, um toque de cada vez.",
+        "fr": "Tours infinies de précision, un tap à la fois.",
+        "de": "Unendliche Präzisionstürme, ein Tap nach dem anderen."
+      }
+    },
+    {
+      "slug": "sketch-buddy",
+      "name": "Sketch Buddy",
+      "package": "com.sunsofgames.sketchbuddy",
+      "accent": "#ff9d4d",
+      "icon": "sketch-buddy.png",
+      "status": "soon",
+      "effectiveDate": "2026-07-26",
+      "capabilities": {
+        "ads": true,
+        "personalizedAds": false,
+        "iap": true,
+        "playGames": true,
+        "cloudSave": false,
+        "ugc": false,
+        "account": false
+      },
+      "tagline": {
+        "es": "Buddy corre por las páginas del cuaderno antes de que El Borrador las borre.",
+        "en": "Buddy races across the sketchbook pages before The Eraser wipes them out.",
+        "pt": "Buddy corre pelas páginas do caderno antes que A Borracha as apague.",
+        "fr": "Buddy court sur les pages du carnet avant que La Gomme ne les efface.",
+        "de": "Buddy rennt über die Seiten des Skizzenbuchs, bevor Der Radierer sie auslöscht."
+      }
+    },
+    {
+      "slug": "dual-dots",
+      "name": "Dual Dots",
+      "package": "com.sunsofgames.dualdots",
+      "accent": "#ff4dd2",
+      "icon": "dual-dots.png",
+      "status": "soon",
+      "effectiveDate": "2026-07-26",
+      "capabilities": {
+        "ads": true,
+        "personalizedAds": false,
+        "iap": true,
+        "playGames": false,
+        "cloudSave": false,
+        "ugc": false,
+        "account": false
+      },
+      "tagline": {
+        "es": "Dos nodos en órbita, siempre opuestos, esquivando la lluvia de obstáculos.",
+        "en": "Two orbiting nodes, always opposed, dodging a rain of obstacles.",
+        "pt": "Dois nós em órbita, sempre opostos, desviando da chuva de obstáculos.",
+        "fr": "Deux nœuds en orbite, toujours opposés, esquivant une pluie d'obstacles.",
+        "de": "Zwei kreisende Knoten, stets gegenüber, im Ausweichen vor Hindernissen."
+      }
+    }
+  ]
+}

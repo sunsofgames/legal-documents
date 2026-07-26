@@ -1,321 +1,68 @@
 <!doctype html>
+<!-- GENERADO por tools/build-legal.mjs — no editar a mano.
+     Los juegos y sus descripciones viven en content/games.json. -->
 <html lang="es">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>SunSof Games</title>
     <meta name="description" content="SunSof Games — independent mobile game studio. Games catalog and legal documents." />
-    <style>
-      :root {
-        --bg-0: #030305;
-        --bg-1: #0a0a14;
-        --panel: rgba(255, 255, 255, 0.03);
-        --panel-strong: linear-gradient(135deg, rgba(16, 16, 24, 0.78), rgba(24, 24, 36, 0.6));
-        --panel-border: rgba(255, 255, 255, 0.08);
-        --neon-cyan: #00f2fe;
-        --neon-violet: #7a5cff;
-        --neon-gold: #ffd700;
-        --text-main: #e8e8f0;
-        --text-dim: #9a9ab0;
-        --text-faint: #64647a;
-      }
-
-      * { box-sizing: border-box; }
-
-      body {
-        margin: 0;
-        font-family: "Rajdhani", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-        background: var(--bg-0);
-        color: var(--text-main);
-        line-height: 1.6;
-        -webkit-font-smoothing: antialiased;
-      }
-
-      body::before {
-        content: "";
-        position: fixed;
-        inset: 0;
-        z-index: -1;
-        background:
-          radial-gradient(650px 420px at 15% -10%, rgba(122, 92, 255, 0.16), transparent 60%),
-          radial-gradient(650px 420px at 90% 6%, rgba(0, 242, 254, 0.12), transparent 60%),
-          radial-gradient(ellipse at top, var(--bg-1) 0%, var(--bg-0) 70%);
-      }
-
-      h1, h2, h3 {
-        font-family: "Orbitron", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-        font-weight: 700;
-        margin: 0;
-      }
-
-      .wrap {
-        max-width: 780px;
-        margin: 0 auto;
-        padding: 0 1.25rem 4rem;
-      }
-
-      /* ---------- Language switcher ---------- */
-      .lang-switch {
-        display: flex;
-        justify-content: center;
-        gap: 6px;
-        padding: 1.4rem 0 0;
-        flex-wrap: wrap;
-      }
-
-      .lang-switch button {
-        font-family: inherit;
-        font-size: 0.72rem;
-        letter-spacing: 1px;
-        text-transform: uppercase;
-        font-weight: 700;
-        color: var(--text-dim);
-        background: var(--panel);
-        border: 1px solid var(--panel-border);
-        padding: 6px 13px;
-        border-radius: 999px;
-        cursor: pointer;
-        transition: all 0.2s ease;
-      }
-
-      .lang-switch button:hover {
-        color: var(--text-main);
-        border-color: rgba(0, 242, 254, 0.3);
-      }
-
-      .lang-switch button.active {
-        color: #04141a;
-        background: linear-gradient(135deg, var(--neon-cyan), #63f6ff);
-        border-color: transparent;
-        box-shadow: 0 0 16px rgba(0, 242, 254, 0.35);
-      }
-
-      .lang-switch button.active::before {
-        content: "✓ ";
-      }
-
-      /* ---------- Hero ---------- */
-      header.hero {
-        padding: 3rem 0 2.6rem;
-        text-align: center;
-      }
-
-      .mark {
-        width: 60px;
-        height: 60px;
-        margin: 0 auto 1.1rem;
-        border-radius: 16px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-family: "Orbitron", sans-serif;
-        font-size: 1.4rem;
-        font-weight: 700;
-        color: #04141a;
-        background: linear-gradient(135deg, var(--neon-cyan), var(--neon-violet));
-        box-shadow: 0 0 32px rgba(0, 242, 254, 0.3);
-      }
-
-      h1.brand {
-        font-size: clamp(1.8rem, 6vw, 2.6rem);
-        letter-spacing: 1px;
-        background: linear-gradient(135deg, #ffffff, var(--neon-cyan) 130%);
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
-        margin-bottom: 0.7rem;
-      }
-
-      p.tagline {
-        color: var(--text-dim);
-        font-size: 1.02rem;
-        max-width: 480px;
-        margin: 0 auto;
-      }
-
-      /* ---------- Sections ---------- */
-      section { margin-top: 3rem; }
-
-      .section-label {
-        font-size: 0.72rem;
-        letter-spacing: 3px;
-        text-transform: uppercase;
-        color: var(--neon-violet);
-        text-align: center;
-        margin-bottom: 1.2rem;
-      }
-
-      /* ---------- Games strip ---------- */
-      .game-list {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-      }
-
-      .game-row {
-        display: flex;
-        align-items: center;
-        gap: 14px;
-        background: var(--panel);
-        border: 1px solid var(--panel-border);
-        border-radius: 16px;
-        padding: 0.9rem 1.2rem;
-      }
-
-      .game-dot {
-        width: 9px;
-        height: 9px;
-        border-radius: 50%;
-        flex-shrink: 0;
-        box-shadow: 0 0 8px currentColor;
-      }
-
-      .game-row h3 {
-        font-size: 0.95rem;
-        color: var(--text-main);
-        margin-bottom: 1px;
-      }
-
-      .game-row p {
-        margin: 0;
-        color: var(--text-dim);
-        font-size: 0.84rem;
-      }
-
-      .game-soon {
-        margin-left: auto;
-        flex-shrink: 0;
-        font-size: 0.62rem;
-        letter-spacing: 1px;
-        text-transform: uppercase;
-        color: var(--text-faint);
-        border: 1px solid var(--panel-border);
-        padding: 3px 9px;
-        border-radius: 999px;
-      }
-
-      /* ---------- Legal cards ---------- */
-      .legal-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 14px;
-      }
-
-      @media (max-width: 560px) {
-        .legal-grid { grid-template-columns: 1fr; }
-      }
-
-      .legal-card {
-        display: block;
-        background: var(--panel-strong);
-        backdrop-filter: blur(14px);
-        -webkit-backdrop-filter: blur(14px);
-        border: 1px solid var(--panel-border);
-        border-radius: 20px;
-        padding: 1.5rem;
-        text-decoration: none;
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
-      }
-
-      .legal-card:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 18px 40px rgba(0, 0, 0, 0.4);
-      }
-
-      .legal-card .icon {
-        font-size: 1.4rem;
-        margin-bottom: 0.6rem;
-        display: block;
-      }
-
-      .legal-card h3 {
-        font-size: 1rem;
-        color: var(--text-main);
-        margin-bottom: 0.35rem;
-      }
-
-      .legal-card p {
-        margin: 0;
-        color: var(--text-dim);
-        font-size: 0.84rem;
-      }
-
-      .legal-card.privacy h3 { color: var(--neon-cyan); }
-      .legal-card.terms h3 { color: var(--neon-violet); }
-
-      /* ---------- Footer ---------- */
-      footer.site-footer {
-        text-align: center;
-        margin-top: 3.2rem;
-        color: var(--text-faint);
-        font-size: 0.78rem;
-      }
-
-      footer.site-footer a {
-        color: var(--text-dim);
-        text-decoration: none;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-      }
-
-      footer.site-footer a:hover {
-        color: var(--neon-cyan);
-        border-color: currentColor;
-      }
-    </style>
+    <link rel="icon" href="assets/icons/blocky-sync-fit.png" />
+    <link rel="stylesheet" href="assets/legal.css" />
   </head>
   <body>
     <div class="lang-switch" id="langSwitch"></div>
 
     <div class="wrap">
       <header class="hero">
-        <div class="mark">S</div>
-        <h1 class="brand">SunSof Games</h1>
-        <p class="tagline" data-i18n="tagline"></p>
+        <div class="brand-mark">S</div>
+        <h1>SunSof Games</h1>
+        <p class="subtitle" data-i18n="tagline"></p>
       </header>
 
-      <section id="gamesSection">
+      <section class="hub-section">
         <div class="section-label" data-i18n="gamesLabel"></div>
         <div class="game-list">
-          <div class="game-row">
+          <div class="game-card">
             <span class="game-dot" style="color: #00f2fe;"></span>
-            <div>
+            <div class="game-meta">
               <h3>Blocky: Sync &amp; Fit</h3>
-              <p data-i18n="gameBlocky"></p>
+              <p data-i18n="game_blocky-sync-fit"></p>
+            </div>
+            
+            <div class="game-docs">
+              <a href="games/blocky-sync-fit/privacy.html" data-i18n="docPrivacy"></a>
+              <a href="games/blocky-sync-fit/terms.html" data-i18n="docTerms"></a>
             </div>
           </div>
-          <div class="game-row">
-            <span class="game-dot" style="color: #7a5cff;"></span>
-            <div>
-              <h3>Chronos Protocol</h3>
-              <p data-i18n="gameChronos"></p>
-            </div>
-          </div>
-          <div class="game-row">
-            <span class="game-dot" style="color: #ff007f;"></span>
-            <div>
-              <h3>Dual Psych</h3>
-              <p data-i18n="gameDualPsych"></p>
-            </div>
-          </div>
-          <div class="game-row">
-            <span class="game-dot" style="color: #37e6c4;"></span>
-            <div>
-              <h3>HexaOrder</h3>
-              <p data-i18n="gameHexaOrder"></p>
-            </div>
-          </div>
-          <div class="game-row">
-            <span class="game-dot" style="color: #ffd700;"></span>
-            <div>
-              <h3>Magnet Pull</h3>
-              <p data-i18n="gameMagnetPull"></p>
+          <div class="game-card">
+            <span class="game-dot" style="color: #ff9d4d;"></span>
+            <div class="game-meta">
+              <h3>Sketch Buddy</h3>
+              <p data-i18n="game_sketch-buddy"></p>
             </div>
             <span class="game-soon" data-i18n="soon"></span>
+            <div class="game-docs">
+              <a href="games/sketch-buddy/privacy.html" data-i18n="docPrivacy"></a>
+              <a href="games/sketch-buddy/terms.html" data-i18n="docTerms"></a>
+            </div>
+          </div>
+          <div class="game-card">
+            <span class="game-dot" style="color: #ff4dd2;"></span>
+            <div class="game-meta">
+              <h3>Dual Dots</h3>
+              <p data-i18n="game_dual-dots"></p>
+            </div>
+            <span class="game-soon" data-i18n="soon"></span>
+            <div class="game-docs">
+              <a href="games/dual-dots/privacy.html" data-i18n="docPrivacy"></a>
+              <a href="games/dual-dots/terms.html" data-i18n="docTerms"></a>
+            </div>
           </div>
         </div>
       </section>
 
-      <section>
+      <section class="hub-section">
         <div class="section-label" data-i18n="legalLabel"></div>
         <div class="legal-grid">
           <a class="legal-card privacy" href="privacy-policy.html">
@@ -334,97 +81,97 @@
       <footer class="site-footer">
         <p>
           © 2026 SunSof Games. <span data-i18n="rights"></span> ·
-          <a href="mailto:ccamargov20@gmail.com">ccamargov20@gmail.com</a>
+          <a href="mailto:support@sunsof.games">support@sunsof.games</a>
         </p>
       </footer>
     </div>
 
     <script>
       var I18N = {
-        es: {
-          tagline: "Estudio independiente de videojuegos móviles hiper-casuales.",
-          gamesLabel: "Nuestros juegos",
-          gameBlocky: "Torres infinitas de precisión, un toque a la vez.",
-          gameChronos: "Plataformas cinematográfico contra un cronómetro que nunca se detiene.",
-          gameDualPsych: "Órbita dual de reflejos y precisión.",
-          gameHexaOrder: "Puzzle de colores sobre una grilla hexagonal.",
-          gameMagnetPull: "Runner de multiplicadores magnéticos.",
-          soon: "Próximamente",
-          legalLabel: "Documentos legales",
-          privacyTitle: "Política de Privacidad",
-          privacyDesc: "Cómo recopilamos, usamos y protegemos tus datos.",
-          termsTitle: "Términos y Condiciones",
-          termsDesc: "El acuerdo que rige el uso de nuestras aplicaciones.",
-          rights: "Todos los derechos reservados."
-        },
-        en: {
-          tagline: "Independent studio crafting hyper-casual mobile games.",
-          gamesLabel: "Our games",
-          gameBlocky: "Infinite precision towers, one tap at a time.",
-          gameChronos: "Cinematic platformer racing a clock that never stops.",
-          gameDualPsych: "Dual-orbit reflex and precision gameplay.",
-          gameHexaOrder: "Color-matching puzzle on a hexagonal grid.",
-          gameMagnetPull: "Magnetic multiplier runner.",
-          soon: "Coming soon",
-          legalLabel: "Legal documents",
-          privacyTitle: "Privacy Policy",
-          privacyDesc: "How we collect, use, and protect your data.",
-          termsTitle: "Terms &amp; Conditions",
-          termsDesc: "The agreement governing the use of our apps.",
-          rights: "All rights reserved."
-        },
-        pt: {
-          tagline: "Estúdio independente de jogos móveis hiper-casuais.",
-          gamesLabel: "Nossos jogos",
-          gameBlocky: "Torres infinitas de precisão, um toque de cada vez.",
-          gameChronos: "Plataforma cinematográfica contra um cronômetro que nunca para.",
-          gameDualPsych: "Órbita dupla de reflexos e precisão.",
-          gameHexaOrder: "Quebra-cabeça de cores em uma grade hexagonal.",
-          gameMagnetPull: "Corrida de multiplicadores magnéticos.",
-          soon: "Em breve",
-          legalLabel: "Documentos legais",
-          privacyTitle: "Política de Privacidade",
-          privacyDesc: "Como coletamos, usamos e protegemos seus dados.",
-          termsTitle: "Termos e Condições",
-          termsDesc: "O acordo que rege o uso dos nossos aplicativos.",
-          rights: "Todos os direitos reservados."
-        },
-        fr: {
-          tagline: "Studio indépendant de jeux mobiles hyper-casual.",
-          gamesLabel: "Nos jeux",
-          gameBlocky: "Tours infinies de précision, un tap à la fois.",
-          gameChronos: "Plateforme cinématographique contre un chronomètre qui ne s'arrête jamais.",
-          gameDualPsych: "Orbite double de réflexes et de précision.",
-          gameHexaOrder: "Puzzle de couleurs sur une grille hexagonale.",
-          gameMagnetPull: "Course de multiplicateurs magnétiques.",
-          soon: "Bientôt disponible",
-          legalLabel: "Documents légaux",
-          privacyTitle: "Politique de Confidentialité",
-          privacyDesc: "Comment nous collectons, utilisons et protégeons vos données.",
-          termsTitle: "Conditions Générales",
-          termsDesc: "L'accord régissant l'utilisation de nos applications.",
-          rights: "Tous droits réservés."
-        },
-        de: {
-          tagline: "Unabhängiges Studio für Hyper-Casual-Mobile-Games.",
-          gamesLabel: "Unsere Spiele",
-          gameBlocky: "Unendliche Präzisionstürme, ein Tap nach dem anderen.",
-          gameChronos: "Cineastisches Jump'n'Run gegen eine Uhr, die niemals stoppt.",
-          gameDualPsych: "Duale Orbit-Reflex- und Präzisionsmechanik.",
-          gameHexaOrder: "Farb-Puzzle auf einem Sechseck-Raster.",
-          gameMagnetPull: "Magnetischer Multiplikator-Runner.",
-          soon: "Demnächst",
-          legalLabel: "Rechtliche Dokumente",
-          privacyTitle: "Datenschutzrichtlinie",
-          privacyDesc: "Wie wir deine Daten erheben, nutzen und schützen.",
-          termsTitle: "Allgemeine Geschäftsbedingungen",
-          termsDesc: "Die Vereinbarung zur Nutzung unserer Apps.",
-          rights: "Alle Rechte vorbehalten."
-        }
+            "es": {
+                  "tagline": "Estudio independiente de videojuegos móviles hiper-casuales.",
+                  "gamesLabel": "Nuestros juegos",
+                  "soon": "Próximamente",
+                  "legalLabel": "Documentos del estudio",
+                  "privacyTitle": "Política de Privacidad",
+                  "privacyDesc": "Cómo recopilamos, usamos y protegemos tus datos.",
+                  "termsTitle": "Términos y Condiciones",
+                  "termsDesc": "El acuerdo que rige el uso de nuestras aplicaciones.",
+                  "docPrivacy": "Privacidad",
+                  "docTerms": "Términos",
+                  "rights": "Todos los derechos reservados.",
+                  "game_blocky-sync-fit": "Torres infinitas de precisión, un toque a la vez.",
+                  "game_sketch-buddy": "Buddy corre por las páginas del cuaderno antes de que El Borrador las borre.",
+                  "game_dual-dots": "Dos nodos en órbita, siempre opuestos, esquivando la lluvia de obstáculos."
+            },
+            "en": {
+                  "tagline": "Independent studio crafting hyper-casual mobile games.",
+                  "gamesLabel": "Our games",
+                  "soon": "Coming soon",
+                  "legalLabel": "Studio documents",
+                  "privacyTitle": "Privacy Policy",
+                  "privacyDesc": "How we collect, use, and protect your data.",
+                  "termsTitle": "Terms &amp; Conditions",
+                  "termsDesc": "The agreement governing the use of our apps.",
+                  "docPrivacy": "Privacy",
+                  "docTerms": "Terms",
+                  "rights": "All rights reserved.",
+                  "game_blocky-sync-fit": "Infinite precision towers, one tap at a time.",
+                  "game_sketch-buddy": "Buddy races across the sketchbook pages before The Eraser wipes them out.",
+                  "game_dual-dots": "Two orbiting nodes, always opposed, dodging a rain of obstacles."
+            },
+            "pt": {
+                  "tagline": "Estúdio independente de jogos móveis hiper-casuais.",
+                  "gamesLabel": "Nossos jogos",
+                  "soon": "Em breve",
+                  "legalLabel": "Documentos do estúdio",
+                  "privacyTitle": "Política de Privacidade",
+                  "privacyDesc": "Como coletamos, usamos e protegemos seus dados.",
+                  "termsTitle": "Termos e Condições",
+                  "termsDesc": "O acordo que rege o uso dos nossos aplicativos.",
+                  "docPrivacy": "Privacidade",
+                  "docTerms": "Termos",
+                  "rights": "Todos os direitos reservados.",
+                  "game_blocky-sync-fit": "Torres infinitas de precisão, um toque de cada vez.",
+                  "game_sketch-buddy": "Buddy corre pelas páginas do caderno antes que A Borracha as apague.",
+                  "game_dual-dots": "Dois nós em órbita, sempre opostos, desviando da chuva de obstáculos."
+            },
+            "fr": {
+                  "tagline": "Studio indépendant de jeux mobiles hyper-casual.",
+                  "gamesLabel": "Nos jeux",
+                  "soon": "Bientôt disponible",
+                  "legalLabel": "Documents du studio",
+                  "privacyTitle": "Politique de Confidentialité",
+                  "privacyDesc": "Comment nous collectons, utilisons et protégeons vos données.",
+                  "termsTitle": "Conditions Générales",
+                  "termsDesc": "L'accord régissant l'utilisation de nos applications.",
+                  "docPrivacy": "Confidentialité",
+                  "docTerms": "Conditions",
+                  "rights": "Tous droits réservés.",
+                  "game_blocky-sync-fit": "Tours infinies de précision, un tap à la fois.",
+                  "game_sketch-buddy": "Buddy court sur les pages du carnet avant que La Gomme ne les efface.",
+                  "game_dual-dots": "Deux nœuds en orbite, toujours opposés, esquivant une pluie d'obstacles."
+            },
+            "de": {
+                  "tagline": "Unabhängiges Studio für Hyper-Casual-Mobile-Games.",
+                  "gamesLabel": "Unsere Spiele",
+                  "soon": "Demnächst",
+                  "legalLabel": "Studio-Dokumente",
+                  "privacyTitle": "Datenschutzrichtlinie",
+                  "privacyDesc": "Wie wir deine Daten erheben, nutzen und schützen.",
+                  "termsTitle": "Allgemeine Geschäftsbedingungen",
+                  "termsDesc": "Die Vereinbarung zur Nutzung unserer Apps.",
+                  "docPrivacy": "Datenschutz",
+                  "docTerms": "AGB",
+                  "rights": "Alle Rechte vorbehalten.",
+                  "game_blocky-sync-fit": "Unendliche Präzisionstürme, ein Tap nach dem anderen.",
+                  "game_sketch-buddy": "Buddy rennt über die Seiten des Skizzenbuchs, bevor Der Radierer sie auslöscht.",
+                  "game_dual-dots": "Zwei kreisende Knoten, stets gegenüber, im Ausweichen vor Hindernissen."
+            }
       };
 
-      var SUPPORTED = ["es", "en", "pt", "fr", "de"];
-      var LABELS = { es: "ES", en: "EN", pt: "PT", fr: "FR", de: "DE" };
+      var SUPPORTED = ["es","en","pt","fr","de"];
+      var LABELS = {"es":"ES","en":"EN","pt":"PT","fr":"FR","de":"DE"};
 
       function detectLang() {
         var saved = localStorage.getItem("sunsof_lang");
@@ -434,11 +181,11 @@
       }
 
       function applyLang(lang) {
-        var dict = I18N[lang] || I18N.en;
+        var d = I18N[lang] || I18N.en;
         document.documentElement.setAttribute("lang", lang);
         document.querySelectorAll("[data-i18n]").forEach(function (el) {
           var key = el.getAttribute("data-i18n");
-          if (dict[key] != null) el.innerHTML = dict[key];
+          if (d[key] != null) el.innerHTML = d[key];
         });
         document.querySelectorAll("#langSwitch button").forEach(function (btn) {
           btn.classList.toggle("active", btn.dataset.lang === lang);
