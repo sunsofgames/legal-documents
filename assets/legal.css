@@ -323,13 +323,14 @@ code {
   flex-wrap: wrap;
 }
 
-.game-dot {
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
+.game-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
   flex-shrink: 0;
-  box-shadow: 0 0 8px currentColor;
-  background: currentColor;
+  object-fit: cover;
+  border: 1px solid var(--panel-border);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
 }
 
 .game-meta { flex: 1 1 200px; min-width: 0; }
@@ -344,32 +345,6 @@ code {
   margin: 0;
   color: var(--text-dim);
   font-size: 0.84rem;
-}
-
-.game-docs {
-  display: flex;
-  gap: 6px;
-  flex-shrink: 0;
-  flex-wrap: wrap;
-}
-
-.game-docs a {
-  font-size: 0.68rem;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  font-weight: 700;
-  color: var(--text-dim);
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid var(--panel-border);
-  border-radius: 999px;
-  padding: 5px 12px;
-  text-decoration: none;
-  transition: all 0.2s ease;
-}
-
-.game-docs a:hover {
-  color: var(--text-main);
-  border-color: var(--accent);
 }
 
 .game-soon {

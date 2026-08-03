@@ -263,8 +263,8 @@ export function privacySections(ctx) {
       title: "In-App Purchases",
       html: `
         <p>
-          The Application offers optional in-app purchases, including the removal
-          of advertising and cosmetic or convenience items. All purchases are
+          The Application offers optional in-app purchases of virtual currency,
+          which can be spent on cosmetic items such as skins. All purchases are
           processed by Google Play Billing. Google acts as the merchant of
           record: it collects and processes your payment information under
           ${link("https://policies.google.com/privacy", "its own privacy policy")},
@@ -787,10 +787,10 @@ export function termsSections(ctx) {
           otherwise.
         </p>
         <p>
-          Purchases that permanently remove advertising or unlock content remain
-          available to you for as long as you retain access to the app store
-          account used to make them, and can be restored by reinstalling the
-          Application and signing in to that account.
+          Virtual currency you purchase, and the cosmetic content you unlock with
+          it, remain available to you for as long as you retain access to the app
+          store account used to make the purchase, and can be restored by
+          reinstalling the Application and signing in to that account.
         </p>
         <p>
           <strong>Refunds and consumer rights.</strong> Refund requests are handled

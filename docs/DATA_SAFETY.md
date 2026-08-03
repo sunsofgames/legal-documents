@@ -65,7 +65,7 @@ declaraba SDKs que no están en el proyecto.
 - **¿Los datos están encriptados en tránsito?** → **Sí** (todo el tráfico va por SDKs de Google
   sobre HTTPS/TLS).
 - **¿Ofreces una forma de solicitar la eliminación de datos?** → **Sí** →
-  URL: `https://sunsof.games/games/<slug>/privacy.html#opt-out` (o el correo
+  URL: `https://sunsof.games/privacy-policy.html#opt-out` (o el correo
   `support@sunsof.games`). La política tiene la sección `#opt-out` justamente para esto.
 - **¿La app cumple la Política de Familias?** → **No** (ninguna app está dirigida a menores;
   clasificación de contenido para público general 13+).
@@ -79,18 +79,22 @@ declaraba SDKs que no están en el proyecto.
   hay que marcarlo también en la ficha de Play Store.
 - Compras dentro de la app: **Sí** (las tres, según el plan).
 
-### URLs a pegar en cada app
+### URL a pegar en las TRES apps
 
-| App | Política de privacidad (Play Console + ficha) | Términos (opcional, va en la descripción) |
-|---|---|---|
-| Blocky: Sync & Fit | `https://sunsof.games/games/blocky-sync-fit/privacy.html` | `https://sunsof.games/games/blocky-sync-fit/terms.html` |
-| Sketch Buddy | `https://sunsof.games/games/sketch-buddy/privacy.html` | `https://sunsof.games/games/sketch-buddy/terms.html` |
-| Dual Dots | `https://sunsof.games/games/dual-dots/privacy.html` | `https://sunsof.games/games/dual-dots/terms.html` |
+Una sola política, una sola URL — la misma en Play Console para Blocky, Sketch Buddy y Dual Dots.
+Google acepta explícitamente una política compartida entre varias apps del mismo desarrollador
+(no es obligatorio tener una por app); dejar de mantener tres copias casi idénticas del mismo
+texto elimina el riesgo de que se desincronicen entre sí.
 
-Las URLs viejas del estudio (`/privacy-policy.html` y `/terms-conditions.html`) **siguen
-existiendo y siguen siendo válidas**: son la versión que cubre todo el catálogo y son las que
-Blocky ya tiene publicadas. Se pueden reemplazar por la URL específica de Blocky cuando quieras,
-sin apuro y sin riesgo — pero nunca borres las dos de la raíz.
+| Documento | URL |
+|---|---|
+| Política de Privacidad | `https://sunsof.games/privacy-policy.html` |
+| Términos y Condiciones | `https://sunsof.games/terms-conditions.html` |
+
+El mismo contenido se sirve también en `https://sunsof.games/legal/privacy-policy.html` (y su
+equivalente de términos) — es una copia idéntica dentro del hub de documentos, no un documento
+distinto. No importa cuál de las dos URLs quede cargada en Play Console: las dos dicen lo mismo
+porque las dos salen del mismo `node tools/build-legal.mjs`.
 
 ---
 

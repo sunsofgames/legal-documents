@@ -7,10 +7,13 @@
    Lee content/games.json + content/clauses.mjs y ESCRIBE HTML ESTÁTICO:
 
        index.html                        hub del estudio (5 idiomas)
-       privacy-policy.html               documento del estudio (URL histórica)
-       terms-conditions.html             documento del estudio (URL histórica)
-       games/<slug>/privacy.html         política por app  → va en Play Console
-       games/<slug>/terms.html           términos por app
+       privacy-policy.html               ÚNICA política, cubre TODOS los juegos
+       terms-conditions.html             ÚNICOS términos, cubren TODOS los juegos
+
+   Una sola política para todo el catálogo, no una por juego: Play Console acepta
+   perfectamente una URL de política compartida entre varias apps del mismo
+   desarrollador, y mantener N copias del mismo texto (con pequeñas variaciones de
+   capabilities) era puro costo de mantenimiento sin beneficio legal real.
 
    ¿Por qué generar estático en vez de renderizar con JS en el navegador?
    Porque un revisor de Play, un crawler o un usuario con JS bloqueado tiene que
@@ -21,7 +24,7 @@
    Todo el HTML de salida está marcado como generado: no se edita a mano.
    ========================================================================== */
 
-import { readFile, writeFile, mkdir } from "node:fs/promises";
+import { readFile, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import {
@@ -185,74 +188,16 @@ ${body}
 }
 
 /* --------------------------------------------------------------------------
-   Documentos por juego
-   ------------------------------------------------------------------------ */
-async function buildGameDocs(game) {
-  const emails = [studio.contact, ...(game.extraContacts || [])];
-  const contacts = contactsHtml(emails);
-  const name = nameHtml(game.name);
-
-  const ctx = {
-    caps: game.capabilities,
-    contacts,
-    studio,
-    appLabel: name,
-    scopeSentence: `the <strong>${name}</strong> mobile application (package <code>${game.package}</code>), together with any related services`,
-    effectiveDate: game.effectiveDate,
-    previousEffectiveDate: game.previousEffectiveDate,
-    privacyHref: "privacy.html",
-    termsHref: "terms.html",
-  };
-
-  const dir = join(ROOT, "games", game.slug);
-  await mkdir(dir, { recursive: true });
-
-  const common = {
-    depth: 2,
-    accent: game.accent,
-    iconFile: game.icon,
-    effectiveDate: game.effectiveDate,
-    appIdChip: game.package,
-    privacyHref: "privacy.html",
-    termsHref: "terms.html",
-    hubHref: "../../index.html",
-  };
-
-  await writeFile(
-    join(dir, "privacy.html"),
-    renderDoc({
-      ...common,
-      title: `Privacy Policy — ${game.name}`,
-      metaDescription: `Privacy Policy for ${game.name} (${game.package}), a mobile game by ${studio.name}.`,
-      docKind: "privacy",
-      heading: "Privacy Policy",
-      subtitle: `How <strong>${name}</strong> collects, uses, and protects your data.`,
-      intro: privacyIntro(ctx),
-      sections: privacySections(ctx),
-    })
-  );
-
-  await writeFile(
-    join(dir, "terms.html"),
-    renderDoc({
-      ...common,
-      title: `Terms & Conditions — ${game.name}`,
-      metaDescription: `Terms and Conditions for ${game.name} (${game.package}), a mobile game by ${studio.name}.`,
-      docKind: "terms",
-      heading: "Terms &amp; Conditions",
-      subtitle: `The agreement governing your use of <strong>${name}</strong>.`,
-      intro: termsIntro(ctx),
-      sections: termsSections(ctx),
-    })
-  );
-
-  return [`games/${game.slug}/privacy.html`, `games/${game.slug}/terms.html`];
-}
-
-/* --------------------------------------------------------------------------
-   Documentos del estudio (URLs históricas: Blocky ya las tiene publicadas en
-   Play Console, así que NO pueden dejar de existir ni de ser válidas). Cubren
-   todo el catálogo, con la UNIÓN de las capabilities de los juegos.
+   Documentos del estudio — ÚNICA fuente de verdad legal para las tres apps.
+   Antes existía también un privacy.html/terms.html por juego (games/<slug>/),
+   pero mantener tres copias del mismo texto (con pequeñas variaciones de
+   capabilities) resultó ser puro costo de mantenimiento: Play Console acepta
+   perfectamente una sola URL de política compartida entre varias apps del
+   mismo desarrollador, así que un solo documento — con la UNIÓN de las
+   capabilities de todos los juegos — cubre a los tres sin duplicar nada.
+   Se despliega en dos rutas idénticas (raíz del hosting y /legal/) porque la
+   raíz es la URL histórica que probablemente ya está cargada en Play Console
+   para Blocky; ver tools/deploy notes en README.md.
    ------------------------------------------------------------------------ */
 async function buildStudioDocs() {
   const caps = {};
@@ -280,21 +225,6 @@ async function buildStudioDocs() {
     termsHref: "terms-conditions.html",
   };
 
-  const perApp = `
-    <p>
-      Each application also has its own document, which states exactly which
-      features and third-party services that app uses:
-      ${games
-        .map(
-          (g) =>
-            `<a href="games/${g.slug}/PLACEHOLDER">${nameHtml(g.name)}</a>`
-        )
-        .join(" · ")}.
-      Where a per-app document differs from this one, the per-app document
-      prevails for that application.
-    </p>
-  `;
-
   const common = {
     depth: 0,
     accent: "#00f2fe",
@@ -315,7 +245,7 @@ async function buildStudioDocs() {
       docKind: "privacy",
       heading: "Privacy Policy",
       subtitle: `How our apps collect, use, and protect your data.`,
-      intro: privacyIntro(ctx) + perApp.replace(/PLACEHOLDER/g, "privacy.html"),
+      intro: privacyIntro(ctx),
       sections: privacySections(ctx),
     })
   );
@@ -329,7 +259,7 @@ async function buildStudioDocs() {
       docKind: "terms",
       heading: "Terms &amp; Conditions",
       subtitle: `The agreement governing your use of our apps.`,
-      intro: termsIntro(ctx) + perApp.replace(/PLACEHOLDER/g, "terms.html"),
+      intro: termsIntro(ctx),
       sections: termsSections(ctx),
     })
   );
@@ -350,8 +280,6 @@ const HUB_I18N = {
     privacyDesc: "Cómo recopilamos, usamos y protegemos tus datos.",
     termsTitle: "Términos y Condiciones",
     termsDesc: "El acuerdo que rige el uso de nuestras aplicaciones.",
-    docPrivacy: "Privacidad",
-    docTerms: "Términos",
     rights: "Todos los derechos reservados.",
   },
   en: {
@@ -363,8 +291,6 @@ const HUB_I18N = {
     privacyDesc: "How we collect, use, and protect your data.",
     termsTitle: "Terms &amp; Conditions",
     termsDesc: "The agreement governing the use of our apps.",
-    docPrivacy: "Privacy",
-    docTerms: "Terms",
     rights: "All rights reserved.",
   },
   pt: {
@@ -376,8 +302,6 @@ const HUB_I18N = {
     privacyDesc: "Como coletamos, usamos e protegemos seus dados.",
     termsTitle: "Termos e Condições",
     termsDesc: "O acordo que rege o uso dos nossos aplicativos.",
-    docPrivacy: "Privacidade",
-    docTerms: "Termos",
     rights: "Todos os direitos reservados.",
   },
   fr: {
@@ -389,8 +313,6 @@ const HUB_I18N = {
     privacyDesc: "Comment nous collectons, utilisons et protégeons vos données.",
     termsTitle: "Conditions Générales",
     termsDesc: "L'accord régissant l'utilisation de nos applications.",
-    docPrivacy: "Confidentialité",
-    docTerms: "Conditions",
     rights: "Tous droits réservés.",
   },
   de: {
@@ -402,8 +324,6 @@ const HUB_I18N = {
     privacyDesc: "Wie wir deine Daten erheben, nutzen und schützen.",
     termsTitle: "Allgemeine Geschäftsbedingungen",
     termsDesc: "Die Vereinbarung zur Nutzung unserer Apps.",
-    docPrivacy: "Datenschutz",
-    docTerms: "AGB",
     rights: "Alle Rechte vorbehalten.",
   },
 };
@@ -424,16 +344,12 @@ async function buildHub() {
   const cards = games
     .map(
       (g) => `          <div class="game-card">
-            <span class="game-dot" style="color: ${g.accent};"></span>
+            <img class="game-icon" src="assets/icons/${g.icon}" alt="" width="48" height="48" />
             <div class="game-meta">
               <h3>${nameHtml(g.name)}</h3>
               <p data-i18n="game_${g.slug}"></p>
             </div>
             ${g.status === "soon" ? `<span class="game-soon" data-i18n="soon"></span>` : ""}
-            <div class="game-docs">
-              <a href="games/${g.slug}/privacy.html" data-i18n="docPrivacy"></a>
-              <a href="games/${g.slug}/terms.html" data-i18n="docTerms"></a>
-            </div>
           </div>`
     )
     .join("\n");
@@ -545,7 +461,6 @@ ${cards}
 const written = [];
 written.push(...(await buildHub()));
 written.push(...(await buildStudioDocs()));
-for (const game of games) written.push(...(await buildGameDocs(game)));
 
 console.log(`SunSof Games — sitio legal generado (${written.length} archivos):`);
 for (const f of written) console.log(`  · ${f}`);
